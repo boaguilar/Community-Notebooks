@@ -55,7 +55,7 @@ Output:
 |---|
 | [2,2,2,1,1,0,0] | 
 
-## p_fisherexact_current
+## p_fisherexact
 Computes the p value of the Fisher exact test (https://en.wikipedia.org/wiki/Fisher%27s_exact_test), implemented in JavaScript.
 
 - **Input:** a,b,c,d : values of 2x2 contingency table ([ [ a, b ] ;[ c , d ] ] (type FLOAT64).
@@ -80,3 +80,26 @@ Output:
 | pvalue |
 |---|
 | 8.046828829103659E-12 | 
+
+## mannwhitneyu
+Computes the U statistics and the p value of the Mann–Whitney U test (https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test). This test is also called the Mann–Whitney–Wilcoxon (MWW), Wilcoxon rank-sum test, or Wilcoxon–Mann–Whitney test
+
+- **Input:** x,y :arrays of samples, both should be one-dimensional (type: ARRAY<FLOAT64> ), alt: defines the alternative hypothesis, the following options are available: 'two-sided', 'less', and 'greater'.
+- **Output:** structure of the type struct<U FLOAT64, p FLOAT64> where U is the statistic and p is the p value of the test.
+
+Example
+```
+WITH mydata AS (
+  SELECT
+    [2, 4, 6, 2, 3, 7, 5, 1.] AS x,
+    [8, 10, 11, 14, 20, 18, 19, 9. ] AS y
+)
+SELECT `isb-cgc-bq.functions.mannwhitneyu_current`(y, x, 'two-sided') AS test
+FROM mydata
+```
+
+Output:
+| test.U | test.p |
+|---|---|
+| 0.0 | 9.391056991171487E-4 | 
+
