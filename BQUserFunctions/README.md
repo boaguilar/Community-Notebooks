@@ -54,3 +54,29 @@ Output:
 | label |
 |---|
 | [2,2,2,1,1,0,0] | 
+
+## p_fisherexact_current
+Computes the p value of the Fisher exact test (https://en.wikipedia.org/wiki/Fisher%27s_exact_test), implemented in JavaScript.
+
+- **Input:** a,b,c,d : values of 2x2 contingency table ([ [ a, b ] ;[ c , d ] ] (type FLOAT64).
+- **Output:** The p value of the test (type: FLOAT64)
+
+Example
+```
+WITH mydata as (
+SELECT
+    90.0        as a,
+    27.0        as b,
+    17.0        as c,
+    50.0  as d
+)
+SELECT
+    `isb-cgc-bq.functions.p_fisherexact_current`(a,b,c,d) as pvalue
+FROM
+   mydata
+```
+
+Output:
+| pvalue |
+|---|
+| 8.046828829103659E-12 | 
