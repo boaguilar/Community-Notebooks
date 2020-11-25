@@ -103,3 +103,17 @@ Output:
 |---|---|
 | 0.0 | 9.391056991171487E-4 | 
 
+## significance_level_ttest2
+Determines if the p-value of a two-sided T test is smaller than  0.05, 0.01, 0.005, or 0.001 (common significance levels). It is used to filter out correlations that are not statistically significant (p-value > significance_level)
+
+- **Input:** df: degrees of freedom (type INT64), and tscore: the t statistics (type FLOAT64).
+- **Output:** One of the 6 possible upper bounds of the p-value : 1.0, 0.05,0.01,0.005,0.001,0.0.
+
+Example:
+```
+SELECT `isb-cgc-bq.functions.significance_level_ttest2_current`(30, 3.65) as slevel
+```
+Output:
+| slevel |
+|---|
+| 0.001 |
