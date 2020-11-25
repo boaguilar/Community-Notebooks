@@ -133,3 +133,18 @@ Output:
 | p |
 |---|
 | 0.1805877514841956 |
+
+## jstat_normal_cdf
+Returns the value of x in the cdf of the Normal distribution with parameters mean and std. 
+
+- **Input:** x: the value (type FLOAT64), mean (type FLOAT64), and std: standard deviation (type FLOAT64).
+- **Output:** the cdf of the normal distribution
+
+Example:
+```
+SELECT `isb-cgc-bq.functions.jstat_normal_cdf_current`(2.0, 0.0, 1.0 ) AS cdf
+```
+Output:
+| cdf |
+|---|
+| 0.9772498680518208 |
