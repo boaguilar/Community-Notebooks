@@ -7,7 +7,7 @@ Computes the test statistics (H) and the p value of the Kruskal Wallis test (htt
 - **Input:** Data in form of an array of structures <factor STRING, val FLOAT64> where factors is the categorical or nominal data point and val is the numerical value (type array: struct <factor STRING, val FLOAT64>).
 - **Output:** A structure of the type struct<H FLOAT64, p FLOAT64, DOF FLOAT64> where H is the statistic, p is the p value, and DOF is the degrees of freedom
 
-#### Example
+Example
 ```
 WITH mydata AS (
    SELECT [
@@ -21,7 +21,7 @@ SELECT `isb-cgc-bq.functions.kruskal_wallis_current`(data)
 FROM mydata
 ```
 
-#### Output:
+Output:
 | results.H  | results.p  | results.DoF  |
 |---|---|---|
 | 3.423076923076927  | 0.1805877514841956  |  2 | 
@@ -33,7 +33,7 @@ Estimates cluster assigments using the K-means algorithm (https://en.wikipedia.o
   (type ARRAY<STRUCT<point ARRAY<FLOAT64>>>), iterations: the number of iterations (type INT64), and k: the number of clusters (type INT64).
 - **Output:** An array of labels (integer numbers) representing the cluster assigments for each data point.
 
-#### Example
+Example
 ```
 WITH mydata AS (
  SELECT
@@ -50,7 +50,7 @@ SELECT `isb-cgc-bq.functions.kmeans_current`(PointSet, 100, 3) as labels
 FROM mydata
 ```
 
-#### Output:
+Output:
 | label |
 |---|
 | [2,2,2,1,1,0,0] | 
