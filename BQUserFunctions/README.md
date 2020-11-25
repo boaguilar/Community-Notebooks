@@ -117,3 +117,19 @@ Output:
 | slevel |
 |---|
 | 0.001 |
+
+## complement_chisquare_cdf
+Returns the complement of the value of H in the cdf of the Chi Square distribution with dof degrees of freedom.
+This function is called by the kruskal_wallis function.
+
+- **Input:** H: the statistics (type FLOAT64) and dof: degrees of freedom (type INT64).
+- **Output:** complement of the the cdf of the Chi Square distribution.
+
+Example:
+```
+SELECT `isb-cgc-bq.functions.complement_chisquare_cdf_current`(3.423076923076927 ,2 ) AS p
+```
+Output:
+| p |
+|---|
+| 0.1805877514841956 |
