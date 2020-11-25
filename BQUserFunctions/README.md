@@ -25,3 +25,32 @@ FROM mydata
 | results.H  | results.p  | results.DoF  |
 |---|---|---|
 | 3.423076923076927  | 0.1805877514841956  |  2 | 
+
+## kmeans
+Estimates cluster assigments using the K-means algorithm (https://en.wikipedia.org/wiki/K-means_clustering), implemented in JavaScript.
+
+- **Input:** DataPoints: data points in the form of an array of structures where each element is an array that represents a data point
+  (type ARRAY<STRUCT<point ARRAY<FLOAT64>>>), iterations: the number of iterations (type INT64), and k: the number of clusters (type INT64).
+- **Output:** An array of labels (integer numbers) representing the cluster assigments for each data point.
+
+#### Example
+```
+WITH mydata AS (
+ SELECT
+   [
+    STRUCT( [  1.0, 0] ),
+    STRUCT( [  0.0, 1] ),
+    STRUCT( [  0.0, 0] ),
+    STRUCT( [-10.0, 10] ),
+    STRUCT( [ -9.0, 11] ),
+    STRUCT( [ 10.0, 10] ),
+    STRUCT( [ 11.0, 12] )
+   ] AS PointSet)
+SELECT `isb-cgc-bq.functions.kmeans_current`(PointSet, 100, 3) as labels
+FROM mydata
+```
+
+#### Output:
+| label |
+|---|
+| [2,2,2,1,1,0,0] | 
